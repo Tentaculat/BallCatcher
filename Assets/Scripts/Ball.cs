@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Ball : MonoBehaviour {
+    private Model.Ball b;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+    public void SetBall(Model.Ball b) {
+        this.b = b;
+    }
+
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, -10 * Time.deltaTime, 0);
+        if (b.isLive) {
+            transform.localPosition = new Vector3(b.x, -b.y, 0);
+        } else {
+            Destroy(gameObject);
+        }
 	}
 }
